@@ -7,18 +7,21 @@ var bodyParser = require('body-parser');
 var PythonShell = require('python-shell');
 var schedule = require('node-schedule');
 
+// Take an initial measurement
+// This is vital in case the data.db doesn't exist yet
+// This will create the file and the appropriate tables
+measure();
+
+// Now just schedule a measurement for n minutes
 var rule = new schedule.RecurrenceRule();
 rule.minute = 1;
- 
+
 var j = schedule.scheduleJob(rule, function(){
-  PythonShell.run('measure.py', function (err) {
-    if (err) throw err;
-      console.log('ping')
-  })
+  measure();
 });
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var api = require('./routes/api');
 
 var app = express();
 
@@ -35,7 +38,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -68,4 +71,14 @@ app.use(function(err, req, res, next) {
   });
 });
 
+function measure(){
+  console.log('testing enviornment')
+  PythonShell.run('measure.py', function (err) {
+    if (err) throw err;
+      console.log('ping')
+  })
+}
+
+
 module.exports = app;
+
