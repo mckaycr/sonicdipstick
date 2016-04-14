@@ -55,6 +55,6 @@ if goodread:
         distance=duration*13512
         GPIO.cleanup()
         print distance
-        c.execute("INSERT INTO DATA VALUES ('%s','%s','%s')" % (time.strftime("%d/%m/%Y"),time.strftime("%H:%M:%S"), distance))
+        c.execute("INSERT INTO DATA VALUES ('%s','%s','%s')" % (time.strftime("%m/%d/%Y"),time.strftime("%H:%M:%S"), distance))
 conn.commit()
 conn.close()
