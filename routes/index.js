@@ -6,18 +6,49 @@ var db = new sqlite3.Database('data.db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	db.serialize(function(){
-		db.all("SELECT * from data", function(err, data){
-			var converted = convertData(data)
-			res.render('index', { title: 'Sonic DipStick', rows:converted });
-		})
+	getAll(function(data){
+		res.render('index', { title: 'Sonic DipStick', rows:data });
 	})
 });
 
-function convertData(arrayOfObjs){
+/*
+	This function queries the data.db and returns
+	all measurements.  Will probably scale this down
+	to last n measurements
+
+	@params callback is a function 
+
+ */
+
+function getAll(callback){
+	db.serialize(function(){
+		db.all("SELECT * from data", function(err, data){
+			convertData(data, function(results){
+				callback(results)
+			})
+		})
+	})
+}
+
+/*
+	This function formats the measurement data
+	to something a little more readable for the 
+	web interface
+
+	@params arrayOfObjs is an array of measurement objects
+	{date:mm/dd/yyyy, time:HH:MM:SS, measurement:00.000000000}
+	measurement is currently in inches
+	@params callback is a function to process the converted object 
+
+ */
+
+function convertData(arrayOfObjs, callback){
 	var array = arrayOfObjs.map(function(value, index){
 		return [value.date + " " + value.time, value.measurement];
 	})
-	return array
+	callback(array)
 }
+
 module.exports = router;
+
+
