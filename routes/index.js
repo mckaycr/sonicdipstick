@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
 
 function getAll(callback){
 	db.serialize(function(){
-		db.all("SELECT * from data", function(err, data){
+		db.all("SELECT * from data order by date DESC", function(err, data){
 			convertData(data, function(results){
 				callback(results)
 			})
