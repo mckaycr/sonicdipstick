@@ -27,12 +27,11 @@ timeout = 0.020
 GPIO.setup(11, GPIO.OUT)
 # Make sure output is set correctly
 GPIO.output(11, 0)
-
+# Wait long enough to for pin to set
 time.sleep(0.000002)
-
 # Send signal
 GPIO.output(11, 1)
-
+# Send it for 5 micro seconds
 time.sleep(0.000005)
 # Turn off signal
 GPIO.output(11, 0)
