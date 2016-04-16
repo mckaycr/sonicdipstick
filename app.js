@@ -72,7 +72,6 @@ app.use(function(err, req, res, next) {
 });
 
 function measure(){
-  console.log('testing enviornment')
   PythonShell.run('measure.py', function (err) {
     if (err) throw err;
       console.log('ping')
