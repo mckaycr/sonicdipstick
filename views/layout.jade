@@ -1,7 +1,35 @@
 doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+html(lang="en")
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(name="description" content="A layout example that shows off a responsive email layout.")
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css")
+		link(rel="stylesheet" href="stylesheets/layouts/email.css")
+	body
+		div(id="layout" class="content pure-g")
+			div(id="nav" class="pure-u")
+				a(href="#" class="nav-menu-button")	Menu
+				div(class="nav-inner")
+						button(class="primary-button pure-button") Meausure
+						div(class="pure-menu")
+							ul(class="pure-menu-list")
+								li(class="pure-menu-item")
+									a(href="#" class="pure-menu-link") Settings 
+								li(class="pure-menu-item")
+									a(href="#" class="pure-menu-link") About
+								li(class="pure-menu-item")
+									a(href="#" class="pure-menu-link") Help
+								li(class="pure-menu-heading") Notifications
+									li(class="pure-menu-item")
+										a(href="#" class="pure-menu-link") 
+											<span class="email-label-personal"> </span> Refill Alerts
+									li(class="pure-menu-item")
+										a(href="#" class="pure-menu-link") 
+											<span class="email-label-work"> </span> Low Levels
+									li(class="pure-menu-item")
+										a(href="#" class="pure-menu-link") 
+											<span class="email-label-travel"> </span> Other
+			block content

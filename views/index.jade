@@ -1,17 +1,33 @@
 extends layout
 
 block content
-	h1= title
-	p Welcome to #{title}
-	div
-		table
-			thead
-				tr 
-					th Posts
-					th Name
-			tbody
-				- var items = rows
-				- each item in rows
-					tr
-						td=item[0]
-						td=item[1]
+	div(id="list" class="pure-u-1")
+		- var items = rows
+		- each item in rows
+			div(class="email-item email-item-selected pure-g")
+				div(class="pure-u")
+					img(class="email-avatar" alt="Tilo Mitra&#x27;s avatar" height="64" width="64" src="images/common/tilo-avatar.png")
+				div(class="pure-u-3-4")
+					h5(class="email-name") New Measurement
+					h4(class="email-subject")=item[0]
+					p(class="email-desc")=item[1] + " inches"
+	div(id="main" class="pure-u-1")
+		div(class="email-content")
+			div(class="email-content-header pure-g")
+				div(class="pure-u-1-2")
+					h1(class="email-content-title") #{title}
+					p(class="email-content-subtitle") Developed by <a>Chris McKay</a> from  <span>CRM Designs</span>
+  
+
+				div(class="email-content-controls pure-u-1-2")
+					button(class="secondary-button pure-button") Refresh
+					button(class="secondary-button pure-button") Measure
+					button(class="secondary-button pure-button") Clear
+   
+
+			div(class="email-content-body")
+				p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				p Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				p Aliquam ac feugiat dolor. Proin mattis massa sit amet enim iaculis tincidunt. Mauris tempor mi vitae sem aliquet pharetra. Fusce in dui purus, nec malesuada mauris. Curabitur ornare arcu quis mi blandit laoreet. Vivamus imperdiet fermentum mauris, ac posuere urna tempor at. Duis pellentesque justo ac sapien aliquet egestas. Morbi enim mi, porta eget ullamcorper at, pharetra id lorem.
+				p Donec sagittis dolor ut quam pharetra pretium varius in nibh. Suspendisse potenti. Donec imperdiet, velit vel adipiscing bibendum, leo eros tristique augue, eu rutrum lacus sapien vel quam. Nam orci arcu, luctus quis vestibulum ut, ullamcorper ut enim. Morbi semper erat quis orci aliquet condimentum. Nam interdum mauris sed massa dignissim rhoncus.
+				p Regards,<br>Chris
