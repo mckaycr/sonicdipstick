@@ -1,22 +1,7 @@
 import time
 import datetime
-import sqlite3
-import os.path
 import RPi.GPIO as GPIO
-
-# Establish a new database if one doesnt exist
-if not os.path.exists('data.db'):
-        file = open('data.db','a');
-        file.close()
-        conn = sqlite3.connect('data.db')
-        c = conn.cursor()
-        c.execute('''CREATE TABLE data (date text, time text, measurement text)''')
-        conn.commit()
-        conn.close()
-
-# Establish connection to the database were measurements are kept
-conn = sqlite3.connect('data.db')
-c = conn.cursor()
+import json
 
 # Initiate RPI GPIO pins
 GPIO.setmode(GPIO.BOARD)
@@ -69,8 +54,5 @@ if goodread:
         distance=duration*13512
         # Close up shop
         GPIO.cleanup()
-        print distance
-        # Write results to database
-        c.execute("INSERT INTO DATA VALUES ('%s','%s','%s')" % (time.strftime("%m/%d/%Y"),time.strftime("%H:%M:%S"), distance))
-conn.commit()
-conn.close()
+          
+        print json.dumps({'date':time.strftime("%m/%d/%Y"),'time':time.strftime("%H:%M:%S"),'inches':distance})
