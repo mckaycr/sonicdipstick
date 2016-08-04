@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.1",
     "python-shell": "^0.3.0"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
