@@ -59,4 +59,4 @@ if goodread:
         # Close up shop
         GPIO.cleanup()
           
-        print json.dumps({'date':time.strftime("%m/%d/%Y"),'time':time.strftime("%H:%M:%S"),'inches':distance})
+        print json.dumps({'date':time.strftime("%m/%d/%Y"),'time':time.strftime("%H:%M:%S"),'values':distance})

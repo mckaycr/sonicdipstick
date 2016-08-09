@@ -19,8 +19,31 @@ function measure(options, callback){
 		args:[options.pin]
 	}
 	PythonShell.run('measure.py',opts, function (err,results) {
-		    if (err){callback(err)}
-    		else{callback(null,JSON.parse(results[0]))};
-  	})
+	    if (err){callback(err)}
+		else{
+			var s = JSON.parse(results[0])
+			conversion(s.values,options.unit,function(res){
+				s.values=res;
+				callback(null, s);
+			})
+		}
+	})
 }
 module.exports = new oilLevel();
+
+function conversion(data, unit, callback){
+	var res = 1;
+	switch(unit){
+		case 'in':
+			res = 1;
+			break;
+		case 'cm':
+			res = 2.54;
+			break;
+		case 'mm':
+			res = 25.4;
+			break;
+	}
+	var temp = data*res;
+	callback(temp);
+}
