@@ -7,19 +7,23 @@ function oilLevel(){
 			callback = options;
 			options = defaults;
 		}
-		measure(options, function(err,res){
-			if(err){callback(err)}
-			else{callback(null,res)}
+		validateOptions(options,function(nopts){
+			measure(nopts, function(err,res){
+				if(err){callback(err)}
+				else{callback(null,res)}
+			})
 		})
 	}
 }
+
+module.exports = new oilLevel();
 
 function measure(options, callback){
 	var opts={
 		args:[options.pin]
 	}
 	PythonShell.run('measure.py',opts, function (err,results) {
-	    if (err){callback(err)}
+	    if(err){callback(err)}
 		else{
 			var s = JSON.parse(results[0])
 			conversion(s.values,options.unit,function(res){
@@ -29,21 +33,29 @@ function measure(options, callback){
 		}
 	})
 }
-module.exports = new oilLevel();
+
+function validateOptions(input, callback){
+	var newOptions = input
+	if(!input.hasOwnProperty('pin')){newOptions.pin=defaults.pin}
+	if(!input.hasOwnProperty('unit')){newOptions.unit=defaults.unit}
+	callback(newOptions)
+}
 
 function conversion(data, unit, callback){
-	var res = 1;
+	var multi = 0;
 	switch(unit){
 		case 'in':
-			res = 1;
+			multi = 1;
 			break;
 		case 'cm':
-			res = 2.54;
+			multi = 2.54;
 			break;
 		case 'mm':
-			res = 25.4;
+			multi = 25.4;
 			break;
+		default:
+			multi=1;
 	}
-	var temp = data*res;
-	callback(temp);
+	var res = data*multi;
+	callback(res);
 }
