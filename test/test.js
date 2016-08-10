@@ -72,5 +72,16 @@ describe('oilLevel',function(){
 				done()
 			})
 		})
+		it('callback should return an error due to using the wrong pin', function(done){
+			var options = {
+				pin:12,
+				unit:'mm'
+			}
+			oil.check(options, function(err,results){
+				expect(err)
+				//console.log(results)
+				done()
+			})
+		})
 	})
 })

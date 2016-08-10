@@ -25,12 +25,18 @@ function measure(options, callback){
 	PythonShell.run('measure.py',opts, function (err,results) {
 	    if(err){callback(err)}
 		else{
-			var s = JSON.parse(results[0])
-			conversion(s.values,options.unit,function(res){
-				s.values=res;
-				callback(null, s);
-			})
-		}
+			if(results===null){
+				var e =  new Error('Sensor Issue - make sure you are using the right pin number')
+				callback(e);
+			}
+			else{
+				var s = JSON.parse(results[0])
+				conversion(s.values,options.unit,function(res){
+					s.values=res;
+					callback(null, s);
+				})
+			}
+		}	
 	})
 }
 
