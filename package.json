@@ -1,6 +1,6 @@
 {
   "name": "sonicdipstick",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "dependencies": {
     "chai": "^3.5.0",
