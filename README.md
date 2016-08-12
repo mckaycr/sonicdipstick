@@ -33,7 +33,7 @@ oil.check(options, function(err,results){
 ```
 ##Options
 - `pin` - This is an integer that corrisponds to the pin you have your sensor connected too.
-- `unit` - The units of measurement you're like the results in. **Not Implemented Yet**
+- `unit` - The units of measurement you're like the results in.
 	- `in` - Inches
 	- `cm` - Centimeters
 	- `mm` - Millimeters
