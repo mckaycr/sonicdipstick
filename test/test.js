@@ -83,5 +83,20 @@ describe('oilLevel',function(){
 				done()
 			})
 		})
+		it('checks for unhandled errors',function(done){
+			var options = {
+				pins:'in',
+				uni:'12'
+			};
+			oil.check(options, function(err,results){
+				if(err){expect(err)}
+				else{
+					expect(results).to.have.a.property('date');
+					expect(results).to.have.a.property('time');
+					expect(results).to.have.a.property('values');
+				}
+				done();
+			})
+		})
 	})
 })
