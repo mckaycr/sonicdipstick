@@ -9,5 +9,26 @@
   },
   "scripts": {
     "test": "mocha"
-  }
+  },
+  "description": "Project for measuring oil levels with RPI2",
+  "main": "oilLevel.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mckaycr/sonicdipstick.git"
+  },
+  "keywords": [
+    "rpi",
+    "raspberry",
+    "pi",
+    "ultrasonic"
+  ],
+  "author": "Christopher McKay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mckaycr/sonicdipstick/issues"
+  },
+  "homepage": "https://github.com/mckaycr/sonicdipstick#readme"
 }
