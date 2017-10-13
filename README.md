@@ -8,12 +8,19 @@ So I'm working on using my [Raspberry Pi 2](https://www.raspberrypi.org/products
 
 This first step is to create a module specifically for taking the measurements.
 
+## Prerequisites
+```
+sudo apt install -y python-dev python-rpi.gpio
+```
+
 ## Setup
 ```
 git clone git@github.com:mckaycr/sonicdipstick.git
 cd sonicdipstick
 npm install
+sudo npm test
 ```
+Remember that in order to use the GPIO pins you must run your app as sudo.
 ## Example
 ```
 var oil = require('oilLevel');
@@ -37,7 +44,7 @@ oil.check(options, function(err,results){
 	- `in` - Inches
 	- `cm` - Centimeters
 	- `mm` - Millimeters
-	
+
 ## Whats Next
 - Option for changing unit of measurement
 - Thinking about adding an option for three pings, and then return an average??
