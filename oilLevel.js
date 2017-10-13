@@ -20,7 +20,8 @@ module.exports = new oilLevel();
 
 function measure(options, callback){
 	var opts={
-		args:[options.pin]
+		args:[options.pin],
+		scriptPath:__dirname
 	}
 	PythonShell.run('measure.py',opts, function (err,results) {
 	    if(err){callback(err)}
@@ -36,7 +37,7 @@ function measure(options, callback){
 					callback(null, s);
 				})
 			}
-		}	
+		}
 	})
 }
 
