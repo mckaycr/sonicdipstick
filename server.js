@@ -1,9 +1,24 @@
 var express = require('express');
 var app = express();
+var oil = require('oilLevel.js');
 
 // reply to request with "Hello World!"
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.send('Sonic Dip Stick is now online.');
+});
+app.get('/check', function (req, res) {
+	  var options = {
+	    pin:11
+	}
+	oil.check(options, function(err,results){
+	    if(!err){
+	    	console.log(results)
+	    	res.send(results);
+	   	}else{
+	   		console.log(err)
+	   		res.send(err)
+	   	}
+	})
 });
 
 //start a server on port 80 and log its start to our console
