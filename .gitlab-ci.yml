@@ -12,5 +12,3 @@ job1:
         - git push resin master
     only:
         - master
-    tags:
-        - resin
