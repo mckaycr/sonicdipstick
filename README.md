@@ -16,7 +16,7 @@ When you get to the [Deploy Code](https://docs.resin.io/raspberrypi3/nodejs/gett
 ```
 git clone git@github.com:mckaycr/sonicdipstick.git
 ```
-Once the repo is cloned, change directory into the newly created sonicdipstick directory and add the resin git remote endpoint by running the command git remote add shown in the top-right corner of your application page:
+Once the repo is cloned, change directory into the newly created ```sonicdipstick``` directory and add the resin git remote endpoint by running the command ```git remote add``` shown in the top-right corner of your application page:
 ```
 cd sonicdipstick
 git remote add resin <USERNAME>@git.resin.io:<USERNAME>/<APPNAME>.git
