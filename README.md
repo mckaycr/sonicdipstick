@@ -8,12 +8,16 @@ So I'm working on using my [Raspberry Pi 2](https://www.raspberrypi.org/products
 
 This first step is to create a module specifically for taking the measurements.
 
-## Prerequisites
+##Deployment Options
+
+###Install yourself on a raspberry pi
+
+#### Prerequisites
 ```
 sudo apt install -y python-dev python-rpi.gpio
 ```
 
-## Setup
+#### Setup
 ```
 git clone git@github.com:mckaycr/sonicdipstick.git
 cd sonicdipstick
@@ -21,6 +25,19 @@ npm install
 sudo npm test
 ```
 Remember that in order to use the GPIO pins you must run your app as sudo.
+###[Resin.io](https://resin.io)
+####Setup
+Follow the [Getting Started]https://docs.resin.io/raspberrypi3/nodejs/getting-started/)
+When you get to the "Deploy Code" part, swap their simple-server-node repository with this one
+```
+git clone git@github.com:mckaycr/sonicdipstick.git
+```
+Once the repo is cloned, change directory into the newly created sonicdipstick directory and add the resin git remote endpoint by running the command git remote add shown in the top-right corner of your application page:
+```
+cd sonicdipstick
+git remote add resin <USERNAME>@git.resin.io:<USERNAME>/<APPNAME>.git
+```
+From there just continue following the Getting Started guide again, and your oil sensor should be deployed
 ## Example
 ```
 var oil = require('oilLevel');
