@@ -6,10 +6,10 @@ I have 500 gallon oil tank, just like a lot of homes out in the county.  It's do
 So I'm working on using my [Raspberry Pi 2](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/) (or 3) and a [PING))) Ultrasonic Distance Sensor](https://www.parallax.com/product/28015) to take measurements at regular intervals, and record them to a database.  I then display the data on a website using [ExpressJS](http://expressjs.com/) also running on my RPI.
 This first step is to create a module specifically for taking the measurements.
 ## Deployment Options
-### [Resin.io](https://resin.io) (Recommended)
+### Option 1:[Resin.io](https://resin.io) (Recommended)
 #### Setup
-Follow the [Getting Started]https://docs.resin.io/raspberrypi3/nodejs/getting-started/)
-When you get to the "Deploy Code" part, swap their simple-server-node repository with this one
+Follow the [Getting Started](https://docs.resin.io/raspberrypi3/nodejs/getting-started/)
+When you get to the [Deploy Code](https://docs.resin.io/raspberrypi3/nodejs/getting-started/#deploy-code) part, swap their simple-server-node repository with this one
 ```
 git clone git@github.com:mckaycr/sonicdipstick.git
 ```
@@ -19,7 +19,7 @@ cd sonicdipstick
 git remote add resin <USERNAME>@git.resin.io:<USERNAME>/<APPNAME>.git
 ```
 From there just continue following the Getting Started guide again, and your oil sensor should be deployed
-### Install yourself on a raspberry pi
+### Option 2:Install yourself on a raspberry pi
 #### Prerequisites
 ```
 sudo apt install -y python-dev python-rpi.gpio
@@ -33,7 +33,7 @@ sudo npm test
 sudo npm start
 ```
 Remember that in order to use the GPIO pins you must run your app as sudo.
-## Example
+## Usage
 In your browser go to:
 ```
 http://<IPADDRESS>/check
