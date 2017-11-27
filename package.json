@@ -4,10 +4,23 @@
   "private": true,
   "dependencies": {
     "chai": "^3.5.0",
+    "express": "^4.16.2",
     "mocha": "^3.0.1",
     "python-shell": "^0.3.0"
   },
   "scripts": {
-    "test": "mocha"
-  }
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "description": "Project for measuring oil levels with RPI2",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.mckay.synology.me:mckaycr/sonicdipstick.git"
+  },
+  "author": "Christopher McKay",
+  "license": "ISC"
 }
