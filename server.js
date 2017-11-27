@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var oil = require('oilLevel.js');
+var oil = require(__dirname + '/oilLevel.js');
 
 // reply to request with "Hello World!"
 app.get('/', function (req, res) {
