@@ -32,8 +32,8 @@ function measure(options, callback){
 			}
 			else{
 				var s = JSON.parse(results[0])
-				conversion(s.values,options.unit,function(res){
-					s.values=res;
+				conversion(s.data,options.unit,function(res){
+					s.data=res;
 					callback(null, s);
 				})
 			}
