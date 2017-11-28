@@ -20,7 +20,14 @@
     <div class="row">
 		<div class="col">
 			<div id="container" class="svg-container" onclick="gauge1.update(NewValue());">
-				<svg id="fillgauge1" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet"></svg>
+				<svg id="fillgauge1" width="360" height="360" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet">
+                <style>
+                      @media all and (min-width: 360px) {
+                        #layer-background { display: none; }
+                        #layer-text path { fill: url(#Gradient_1); }
+                      }
+                    </style>        
+                </svg>
 			</div>
 		</div>
     </div>
