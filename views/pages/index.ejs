@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
+    <script src="javascripts/liquidFillGauge.js" language="JavaScript"></script>
+    <style>
+        .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
+    </style>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+<main class="wrapper">
+    <div class="row">
+        <div class="col"><h1><%= title %></h1></div>
+    </div>
+    <div class="row">
+		<div class="col">
+			<div id="container" class="svg-container" onclick="gauge1.update(NewValue());">
+				<svg id="fillgauge1" width="360" height="360" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet"></svg>
+			</div>
+		</div>
+    </div>
+    <div class="push"></div>
+</main>
+<footer class="footer" style="border-top: 1px solid #2B333A;">
+	<div class="row">
+        <div class="col"><% include ../partials/footer %></div>
+    </div>
+</footer>
+<script language="JavaScript">
+	var level = (44 - <%= data %>);
+
+    if(level > .5){
+        level = Math.round((level/44)*100);
+    } else {
+        level = ((level/44)*100).toFixed(1);
+    }
+    var config1 = liquidFillGaugeDefaultSettings();
+    config1.circleColor = "#4e565d";
+    config1.textColor = "#fff";
+    config1.waveTextColor = "#4e565d";
+    config1.waveColor = "#d2d5d7";
+    config1.waveAnimateTime = 2000;
+    var gauge1 = loadLiquidFillGauge("fillgauge1", level, config1);
+	var svg = d3.select("div#container")
+	  .append("svg")
+	  .attr("preserveAspectRatio", "xMinYMin meet")
+	  .attr("viewBox", "0 0 360 360")
+	  .classed("svg-content", true);
+    
+    function NewValue(){
+    	var level = 44 - <%= data %>
+        if(level > .5){
+            return Math.round((level/44)*100);
+        } else {
+            return ((level/44)*100).toFixed(1);
+        }
+    }
+</script>
+</body>
+</html>
