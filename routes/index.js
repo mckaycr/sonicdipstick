@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var oil = require(__dirname+'/oilLevel.js');
+var oil = require('../oilLevel.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
