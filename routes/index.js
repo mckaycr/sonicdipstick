@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var oil = require('../oilLevel.js');
+if(process.env.NODE_ENV != 'development'){
+	var oil = require('../oilLevel.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -17,5 +18,13 @@ router.get('/', function(req, res, next) {
 	   	}
 	})
 });
+
+}else{
+	router.get('/', function(req, res, next) {
+		var results = {date:'11/29/2017',data: 13.768741607666016,time: '13:38:18' }
+		res.render('pages/index', { title: 'Sonic Dip Stick', data:results.data, error:null });
+	});
+}
+
 
 module.exports = router;
