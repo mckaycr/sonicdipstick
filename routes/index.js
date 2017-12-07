@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 if(process.env.NODE_ENV != 'development'){
-	var oil = require('../oilLevel.js');
+	var oil = require('../model/oilLevel.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

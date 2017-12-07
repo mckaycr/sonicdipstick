@@ -1,5 +1,5 @@
 var expect = require("chai").expect;
-var oil = require('../oilLevel.js');
+var oil = require('../model/oilLevel.js');
 
 describe('oilLevel',function(){
 	describe('check', function(){
