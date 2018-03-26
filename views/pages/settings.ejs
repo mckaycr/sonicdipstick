@@ -10,12 +10,26 @@
 </header>
 <main class="wrapper">
     <div class="row">
-        <div class="col" style="margin-top:5px; margin-bottom:50px;"><h1><%= title %></h1></div>
-    </div>
-    <div class="row">
-		<div class="col">
-			
-		</div>
+        <div class="col" style="margin-top:5px; margin-bottom:50px;"><h2>Settings</h2></div>
+	</div>
+    <form method="post" class="row">
+			<div class="form-group col">
+				<label for="device_name" class="col-2 col-form-label">Device Name</label>
+				<div>
+					<input class='col-2 col-form-control' value="<%= device_name %>" name='device_name' type='text'>
+				</div>
+				<label for="tank_capcity" class="col-2 col-form-label">Tank Capacity (gallons)</label>
+					<div>
+						<input class='col-2 col-form-control' value="<%= tank_cap %>" name='tank_capcity' type='text'>
+					</div>
+				<label for="tank_height" class="col-2 col-form-label">Tank height (inches)</label>
+					<div>
+						<input class='col-2 col-form-control' value="<%= tank_height %>" name='tank_height' type='text'>
+					</div>
+				</div>
+				
+			<button type="submit" class="btn btn-secondary">Save</button>
+			</form>
     </div>
     <div class="push"></div>
 </main>

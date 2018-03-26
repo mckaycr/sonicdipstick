@@ -19,14 +19,15 @@
     </div>
     <div class="row">
 		<div class="col">
-			<div id="container" class="svg-container" onclick="gauge1.update(NewValue());">
+			<div id="container" class="svg-container" onclick="drawGraph();">
 				<svg id="fillgauge1" width="360" height="360" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet">
        
-                </svg>
+        </svg>
 			</div>
 		</div>
     </div>
     <div class="push"></div>
+	<input id="unit_toggle" style="display:none;" value=1>
 </main>
 <footer class="footer" style="border-top: 1px solid #2B333A;">
 	<div class="row">
@@ -34,32 +35,40 @@
     </div>
 </footer>
 <script language="JavaScript">
-	var level = (44 - <%= data %>);
+	drawGraph();
+	function drawGraph(){
+	var level = (<%= tank_height %> - <%= data %>);
 
     if(level > .5){
-        level = Math.round((level/44)*100);
+        level = Math.round((level/<%= tank_height %>)*100);
     } else {
-        level = ((level/44)*100).toFixed(1);
+        level = ((level/<%= tank_height %>)*100).toFixed(1);
     }
+	  var gals = (<%= tank_cap%>*level)/100
+		console.log(gals)
     var config1 = liquidFillGaugeDefaultSettings();
     config1.circleColor = "#4e565d";
     config1.textColor = "#fff";
     config1.waveTextColor = "#4e565d";
     config1.waveColor = "#d2d5d7";
     config1.waveAnimateTime = 2000;
-    var gauge1 = loadLiquidFillGauge("fillgauge1", level, config1);
-	var svg = d3.select("div#container")
+		config1.displayPercent=false
+		config1.maxValue=<%= tank_cap %>
+  	var gauge1 = loadLiquidFillGauge("fillgauge1", gals, config1);
+  	var svg = d3.select("div#container")
 	  .append("svg")
 	  .attr("preserveAspectRatio", "xMinYMin meet")
 	  .attr("viewBox", "0 0 360 360")
-	  .classed("svg-content", true);
+	  .classed("svg-content", true);		
+	}
+
     
     function NewValue(){
-    	var level = 44 - <%= data %>
+    	var level = <%= tank_height %> - <%= data %>
         if(level > .5){
-            return Math.round((level/44)*100);
+            return Math.round((level/<%= tank_height %>)*100);
         } else {
-            return ((level/44)*100).toFixed(1);
+            return ((level/<%= tank_height %>)*100).toFixed(1);
         }
     }
 </script>
