@@ -21,7 +21,8 @@ var fs = require('fs');
 							data:results.data, 
 							error:null,
 							tank_cap:settings.tank_cap,
-							tank_height:settings.tank_height
+							tank_height:settings.tank_height,
+							unit_display:settings.unit_display
 						});
 					}else{
 						console.log(err)
@@ -30,7 +31,8 @@ var fs = require('fs');
 							data:0,
 							error:err,
 							tank_cap:settings.tank_cap,
-							tank_height:settings.tank_height
+							tank_height:settings.tank_height,
+							unit_display:settings.unit_display
 						});
 					}
 			})
@@ -47,7 +49,8 @@ var fs = require('fs');
 					data:results.data,
 					error:null,
 					tank_cap:settings.tank_cap,
-					tank_height:settings.tank_height 
+					tank_height:settings.tank_height,
+					unit_display:settings.unit_display
 				});
 		});
 	});

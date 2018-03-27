@@ -44,7 +44,7 @@
     } else {
         level = ((level/<%= tank_height %>)*100).toFixed(1);
     }
-	  var gals = (<%= tank_cap%>*level)/100
+	  var gals = ((<%= tank_cap%>*level)/100).toFixed(1)
 		console.log(gals)
     var config1 = liquidFillGaugeDefaultSettings();
     config1.circleColor = "#4e565d";
@@ -53,8 +53,15 @@
     config1.waveColor = "#d2d5d7";
     config1.waveAnimateTime = 2000;
 		config1.displayPercent=false
-		config1.maxValue=<%= tank_cap %>
-  	var gauge1 = loadLiquidFillGauge("fillgauge1", gals, config1);
+		if(<%= unit_display %>==0){
+			config1.displayPercent=true;
+			config1.maxValue=100;
+			var gauge1 = loadLiquidFillGauge("fillgauge1", level, config1);
+		}else{
+			config1.displayPercent=false;
+			config1.maxValue=<%= tank_cap %>;
+			var gauge1 = loadLiquidFillGauge("fillgauge1", gals, config1);			
+		}
   	var svg = d3.select("div#container")
 	  .append("svg")
 	  .attr("preserveAspectRatio", "xMinYMin meet")
