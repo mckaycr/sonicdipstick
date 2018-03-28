@@ -10,6 +10,10 @@ var about = require('./routes/about');
 var api = require('./routes/api');
 var settings = require('./routes/settings');
 
+var schedule = require('node-schedule');
+var oil = require('./model/oilLevel.js')
+var request = require('request');
+
 var app = express();
 
 // view engine setup
@@ -28,6 +32,31 @@ app.use('/', routes);
 app.use('/about', about);
 app.use('/api', api);
 app.use('/settings', settings);
+
+var j = schedule.scheduleJob('*/1 * * * *', function(){
+  if(app.get('env') === 'development'){
+    var results = {date:'11/29/2017',data: 13.768741607666016,time: '13:38:18' };
+    var options = {
+      uri: 'https://dweet.io:443/dweet/for/sonicdipstick?date='+results.date+'&time='+results.time+'&data='+results.data,
+      method:'POST',
+      json:true
+    }
+    request(options,function(err, res, body){
+      console.log(body)
+    })    
+  }else{
+		oil.check({pin:11}, function(err,results){
+      var options = {
+        uri: 'https://dweet.io:443/dweet/for/sonicdipstick?date='+results.date+'&time='+results.time+'&data='+results.data,
+        method:'POST',
+        json:true
+      }
+      request(options,function(err, res, body){
+        console.log(body)
+      })
+    });
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
