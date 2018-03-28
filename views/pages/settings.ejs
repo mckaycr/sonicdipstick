@@ -9,35 +9,44 @@
     <% include ../partials/header %>
 </header>
 <main class="wrapper">
-			<script language="JavaScript">
-			document.getElementById('DisplayUnit').options.selectedIndex = <%= unit_display %>
-	</script>
-    <div class="row">
-        <div class="col" style="margin-top:5px; margin-bottom:50px;"><h2>Settings</h2></div>
+  <div class="row">
+  	<div class="col" style="margin-top:5px; margin-bottom:50px;"><h2>Settings</h2></div>
 	</div>
-    <form method="post" class="row">
-			<div class="form-group col">
-				<label for="device_name" class="col-2 col-form-label">Device Name</label>
-				<div>
-					<input class='col-2 col-form-control' value="<%= device_name %>" name='device_name' type='text'>
+    <form method="post">
+			<div class="form-group row">
+				<label for="device_name" class="col-sm-2 col-form-label">Device Name</label>
+				<div class="col-sm-10">				
+					<input class='form-control' value="<%= device_name %>" name='device_name' type='text'>
 				</div>
-				<label for="tank_capcity" class="col-2 col-form-label">Tank Capacity (gallons)</label>
-					<div>
-						<input class='col-2 col-form-control' value="<%= tank_cap %>" name='tank_capcity' type='text'>
-					</div>
-				<label for="tank_height" class="col-2 col-form-label">Tank height (inches)</label>
-					<div>
-						<input class='col-2 col-form-control' value="<%= tank_height %>" name='tank_height' type='text'>
-					</div>
+			</div>
+			<div class="form-group row">
+				<label for="tank_capcity" class="col-sm-2 col-form-label">Tank Capacity (gallons)</label>
+				<div class="col-sm-10">
+					<input class='form-control' value="<%= tank_cap %>" name='tank_capcity' type='text'>
 				</div>
-				  <label class="mr-sm-2" for="DisplayUnit">Display Oil Level as</label>
-					<select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="DisplayUnit" name="DisplayUnit">
+			</div>
+			<div class="form-group row">
+				<label for="tank_height" class="col-sm-2 col-form-label">Tank height (inches)</label>
+				<div class="col-sm-10">
+					<input class='form-control' value="<%= tank_height %>" name='tank_height' type='text'>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="DisplayUnit">Display Oil Level as</label>
+				<div class="col-sm-10">
+					<select class="form-control" id="DisplayUnit" name="DisplayUnit">
 						<option value="0">Percentage</option>
 						<option value="1">Gallons</option>
 					</select>
-			<button type="submit" class="btn btn-secondary">Save</button>
-			</form>
-    </div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<button type="submit" class="btn btn-secondary">Save</button>
+			</div>
+		</form>
+		<script language="JavaScript">
+				document.getElementById('DisplayUnit').selectedIndex = <%= unit_display %>
+		</script>
     <div class="push"></div>
 </main>
 <footer class="footer" style="border-top: 1px solid #2B333A;">
