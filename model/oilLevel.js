@@ -76,11 +76,16 @@ function calc(m, tk_ht,tk_cap){
 	var gals = 0
   if(residual > .5){
       percentile = Math.round((residual/tk_ht)*100);
-		gals = ((tk_cap*percentile)/100).toFixed(1);
+		  gals = ((tk_cap  * percentile)/100).toFixed(1);
   } else {
       percentile = ((residual/tk_ht)*100).toFixed(1);
 		  gals = ((tk_cap*percentile)/100).toFixed(1);
   }
-	return {'residual':residual, 'percentile':percentile, 'gallons':gals}
+	console.log("Results:" +gals)
+	return {
+		'residual':residual, 
+		'percentile':percentile, 
+		'gallons':gals
+	}
 }
 
