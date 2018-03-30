@@ -71,7 +71,7 @@ function conversion(data, unit, callback){
 	callback(res);
 }
 function calc(m, tk_ht,tk_cap){
-  var residual = (tk_ht - m);
+  var residual = (tk_ht - m).tofixed(0);
   var percentile = 1;
   if(residual > .5){
       percentile = Math.round((residual/tk_ht)*100);
@@ -79,6 +79,6 @@ function calc(m, tk_ht,tk_cap){
       percentile = ((residual/tk_ht)*100).toFixed(1);
   }
   var gals = ((tk_cap*percentile)/100).toFixed(1)
-  return {'residual':residual, 'percentile':percentile, 'gallons':gals}
+  return {'residual':(tk_ht - m).tofixed(0), 'percentile':percentile, 'gallons':((tk_cap*percentile)/100).toFixed(1)}
 }
 
