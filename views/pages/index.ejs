@@ -64,7 +64,7 @@
 
     
     function NewValue(){
-    	var level = <%= tank_height %> - <%= data %>
+    	var level = <%= tank_height %> - <%= data.residual %>
         if(level > .5){
             return Math.round((level/<%= tank_height %>)*100);
         } else {
