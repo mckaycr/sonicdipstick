@@ -71,7 +71,7 @@ function conversion(data, unit, callback){
 	callback(res);
 }
 function calc(m, tk_ht,tk_cap){
-  var residual = (tk_ht - m).tofixed(0);
+  var residual = (tk_ht - m).toFixed(0);
   var percentile = 1;
   if(residual > .5){
       percentile = Math.round((residual/tk_ht)*100);
