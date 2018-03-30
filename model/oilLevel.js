@@ -81,6 +81,6 @@ function calc(m, tk_ht,tk_cap){
       percentile = ((residual/tk_ht)*100).toFixed(1);
 		  gals = ((tk_cap*percentile)/100).toFixed(1);
   }
-  return {'residual':residual, 'percentile':percentile, 'gallons':gals}
+	return {'residual':residual, 'percentile':percentile, 'gallons':gals}
 }
 
