@@ -1,4 +1,5 @@
 var PythonShell = require('python-shell');
+var fs = require('fs');
 var defaults = {pin:11,	unit:'in'};
 
 function oilLevel(){
@@ -33,8 +34,11 @@ function measure(options, callback){
 			else{
 				var s = JSON.parse(results[0])
 				conversion(s.data,options.unit,function(res){
-					s.data=res;
-					callback(null, s);
+					fs.readFile('model/settings.json', function(err,data){
+    				var settings=JSON.parse(data);
+						s.data = calc(res,settings.tank_height, settings.tank_capacity)
+						callback(null, s);
+					});
 				})
 			}
 		}
@@ -66,3 +70,15 @@ function conversion(data, unit, callback){
 	var res = data*multi;
 	callback(res);
 }
+function calc(m, tk_ht,tk_cap){
+  var residual = (tk_ht - m);
+  var percentile = 1;
+  if(residual > .5){
+      percentile = Math.round((residual/tk_ht)*100);
+  } else {
+      percentile = ((residual/tk_ht)*100).toFixed(1);
+  }
+  var gals = ((tk_cap*percentile)/100).toFixed(1)
+  return {'residual':residual, 'percentile':percentile, 'gallons':gals}
+}
+
