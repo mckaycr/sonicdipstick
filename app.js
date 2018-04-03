@@ -36,7 +36,7 @@ app.use('/settings', settings);
 var j = schedule.scheduleJob('* * 1 * * *', function(){
   		oil.check({pin:11}, function(err,res){
       var options = {
-        uri: 'https://dweet.io:443/dweet/for/sonicdipstick?date='+res.date+'&time='+res.time+'&data='+res.data,
+        uri: 'https://dweet.io:443/dweet/for/sonicdipstick?date='+res.date+'&gallons='+res.data.gallons,
         method:'POST',
         json:true
       }
