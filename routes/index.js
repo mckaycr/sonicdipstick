@@ -43,7 +43,7 @@ var fs = require('fs');
 		router.get('/', function(req, res, next) {
 			fs.readFile('model/settings.json', function(err,data){
     		var settings=JSON.parse(data);
-				var results = {date:'11/29/2017',data: 13.768741607666016,time: '13:38:18' }
+				var results = {date:'11/29/2017',data:{'residual':'26', 'precentile':59,'gallons':162},time: '13:38:18' }
 				res.render('pages/index', {
 					title: settings.device_name,
 					data:results.data,
