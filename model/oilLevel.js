@@ -36,7 +36,7 @@ function measure(options, callback){
 				conversion(s.data,options.unit,function(res){
 					fs.readFile('model/settings.json', function(err,data){
     				var settings=JSON.parse(data);
-						s.data = calc(res,settings.tank_height, settings.tank_capacity)
+						s.data = calc(res,settings.tank_height, settings.tank_cap)
 						callback(null, s);
 					});
 				})
