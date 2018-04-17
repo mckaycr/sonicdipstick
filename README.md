@@ -1,10 +1,10 @@
 # Sonic Dipstick
-Project for measuring oil levels with RPI2
+Project for measuring oil levels with Raspberry Pi
 
 ## Background
 I have 275 gallon oil tank, just like a lot of homes out in the county.  It's down in the basement, and it has one of those pretty standard tank liquid level gauges.  This means I have to go down to the basement and check it every now and then which is not optimal.
 
-So I'm working on using my [Raspberry Pi 2](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/) (or 3) and a [PING))) Ultrasonic Distance Sensor](https://www.parallax.com/product/28015) to take measurements at regular intervals, and record them to a database.  I then display the data on a website using [ExpressJS](http://expressjs.com/) also running on my RPI.
+So I'm working on using my Raspberry Pi Zero W, but I have also had it working on a [Raspberry Pi 2](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/) (and 3).  I also use a [PING))) Ultrasonic Distance Sensor](https://www.parallax.com/product/28015).  I then display the data on a website using [ExpressJS](http://expressjs.com/) also running on my RPI. Also, this fits on just a 2GB microSD card, which is nice (and cheap)
 
 This first step is to create a module specifically for taking the measurements.
 ## Deployment Options
@@ -32,20 +32,23 @@ sudo apt install -y python-dev python-rpi.gpio
 git clone git@github.com:mckaycr/sonicdipstick.git
 cd sonicdipstick
 npm install
-sudo npm test
 sudo npm start
 ```
 Remember that in order to use the GPIO pins you must run your app as sudo.
 ## Usage
 In your browser go to:
 ```
-http://<IPADDRESS>/check
+http://<IPADDRESS>/api
 ```
 ## Results
 ```
-{ date: '08/05/2016',
-  data: 130.75472259521484,
-  time: '01:16:49' }
+{"date":"04/17/2018",
+"data":{
+  "residual":"22",
+  "percentile":50,
+  "gallons":137.5
+ },
+ "time":"18:32:20"}
 ```
 ## Home-Assistant Integration
 It is super simple to integrate this sensor into [Home Assistant](https://home-assistant.io/).
@@ -56,9 +59,9 @@ Once you are up and running edit your configuration.yaml file by adding the foll
 ```
   - platform: rest
     name: 'Oil Level'
-    resource: http://<IPADDRESS>/check
+    resource: http://<IPADDRESS>/api
     unit_of_measurement: 'inches'
-    value_template: '{{ value_json.data | round(0)}}'
+    value_template: '{{ value_json.data.gallons | round(0)}}'
     scan_interval: 3600
 ```
 Then restart Home Assistant, and you should start seeing your oil measurements.
