@@ -38,7 +38,6 @@
 	drawGraph();
 	function drawGraph(){
 	  var gals = ((<%= tank_cap%>*<%= data.percentile %>)/100).toFixed(1)
-		console.log(<%= data.percentile %>)
     var config1 = liquidFillGaugeDefaultSettings();
     config1.circleColor = "#4e565d";
     config1.textColor = "#fff";
