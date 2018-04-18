@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
 var routes = require('./routes/index');
 var about = require('./routes/about');
@@ -33,6 +34,22 @@ app.use('/about', about);
 app.use('/api', api);
 app.use('/settings', settings);
 
+fs.open('/data/settings.json', 'r', (err, fd) => {
+  if (err) {
+    if (err.code === 'ENOENT') {
+			console.log("application settings not present, establishing default settings")
+      var fileContent = '{"device_name":"Sonic Dip Stick","tank_cap":"275","tank_height":"44","unit_display":"0"}';
+			var filePath = "/data/settings.json"
+			fs.writeFile(filePath, fileContent, (err) => {
+					if (err) throw err;
+					console.log("default settings established");
+			}); 
+    }
+    //throw err;
+  }
+});
+
+// dweets
 var j = schedule.scheduleJob('* * 1 * * *', function(){
   		oil.check({pin:11}, function(err,res){
       var options = {

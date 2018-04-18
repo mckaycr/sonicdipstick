@@ -44,7 +44,6 @@ var fs = require('fs');
 			fs.readFile('model/settings.json', function(err,data){
     		var settings=JSON.parse(data);
 				var results = {date:'11/29/2017',data:{'residual':'26', 'percentile':59,'gallons':162},time: '13:38:18' }
-				console.log(results.data)
 				res.render('pages/index', {
 					title: settings.device_name,
 					data:results.data,
