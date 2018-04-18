@@ -5,7 +5,6 @@ var fs = require('fs');
 
 		if(process.env.NODE_ENV != 'development'){
 		var oil = require('../model/oilLevel.js');
-
 		/* GET home page. */
 		router.get('/', function(req, res, next) {
 			var options = {
@@ -40,10 +39,12 @@ var fs = require('fs');
 		});
 
 	}else{
+// 		***************** Develompent Mode ********************
 		router.get('/', function(req, res, next) {
 			fs.readFile('model/settings.json', function(err,data){
     		var settings=JSON.parse(data);
-				var results = {date:'11/29/2017',data:{'residual':'26', 'precentile':59,'gallons':162},time: '13:38:18' }
+				var results = {date:'11/29/2017',data:{'residual':'26', 'percentile':59,'gallons':162},time: '13:38:18' }
+				console.log(results.data)
 				res.render('pages/index', {
 					title: settings.device_name,
 					data:results.data,
