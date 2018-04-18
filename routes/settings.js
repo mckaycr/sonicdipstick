@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 /* GET home page. */
+var settingsPath = '/data/settings.json'
 router.get('/', function(req, res, next) {
- fs.readFile('model/settings.json', function(err,data){
+ fs.readFile(settingsPath, function(err,data){
     var obj = JSON.parse(data);
     res.render('pages/settings', {
       title:"Sonic Dip Stick - Settings",
@@ -21,7 +22,7 @@ router.post('/',function(req, res, next){
     tank_height:req.body.tank_height,
     unit_display:req.body.DisplayUnit
   })
-  fs.writeFile('model/settings.json',settings, 'utf8', function(){
+  fs.writeFile(settingsPath,settings, 'utf8', function(){
     res.redirect('/');
   })
 })

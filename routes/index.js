@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 
-
+var settingsPath = '/data/settings.json'
+		
 		if(process.env.NODE_ENV != 'development'){
 		var oil = require('../model/oilLevel.js');
 		/* GET home page. */
@@ -10,7 +11,7 @@ var fs = require('fs');
 			var options = {
 					pin:11
 			}
-			fs.readFile('model/settings.json', function(err,data){
+			fs.readFile(settingsPath, function(err,data){
     		var settings=JSON.parse(data);
 			oil.check(options, function(err,results){
 					if(!err){
@@ -41,7 +42,7 @@ var fs = require('fs');
 	}else{
 // 		***************** Develompent Mode ********************
 		router.get('/', function(req, res, next) {
-			fs.readFile('model/settings.json', function(err,data){
+			fs.readFile(settingsPath, function(err,data){
     		var settings=JSON.parse(data);
 				var results = {date:'11/29/2017',data:{'residual':'26', 'percentile':59,'gallons':162},time: '13:38:18' }
 				res.render('pages/index', {

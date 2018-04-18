@@ -10,10 +10,10 @@ if(process.env.NODE_ENV != 'development'){
 		}
 		oil.check(options, function(err,results){
 		    if(!err){
-		    	console.log(results)
+		    	//console.log(results)
 		    	res.send(results);
 		   	}else{
-		   		console.log(err)
+		   		//console.log(err)
 		   		res.send(err)
 		   	}
 		})
