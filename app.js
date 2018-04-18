@@ -57,7 +57,7 @@ var j = schedule.scheduleJob('* * 1 * * *', function(){
         method:'POST',
         json:true
       }
-			console.log(options)
+			//console.log(options)
       request(options,function(err, res, body){
         console.log(body)
       })
