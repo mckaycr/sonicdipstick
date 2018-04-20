@@ -50,7 +50,7 @@ fs.open('/data/settings.json', 'r', (err, fd) => {
 });
 
 // dweets
-var j = schedule.scheduleJob('* /2 * * *', function(){
+var j = schedule.scheduleJob('0 */2 * * *', function(){
   		oil.check({pin:11}, function(err,res){
       var options = {
         uri: 'https://dweet.io:443/dweet/for/sonicdipstick?date='+res.date+'&gallons='+res.data.gallons,
