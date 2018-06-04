@@ -6,7 +6,6 @@ services:
     - "80:80"
     privileged: true
   mongo:
-      build:
-      - "nonoroazoro/rpi-mongo"
+      image: nonoroazoro/rpi-mongo
       port:
       - "27017:27017"
