@@ -5,3 +5,8 @@ services:
     ports:
     - "80:80"
     privileged: true
+  database:
+      build:
+      - "nonoroazoro/rpi-mongo"
+      port:
+      - "27017:27017"
