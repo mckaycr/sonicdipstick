@@ -4,8 +4,12 @@ services:
     build: .
     ports:
     - "80:80"
+    volumes:
+    - ./data:/data
     privileged: true
   mongdb:
     image: nonoroazoro/rpi-mongo
     ports:
     - "27017:27017"
+    volumes:
+    - ./data:/data/db
