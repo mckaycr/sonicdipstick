@@ -10,12 +10,25 @@ var url = "mongodb://192.168.0.151:27017/";
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
-  var dbo = db.db("mydb");
-  dbo.createCollection("customers", function(err, res) {
+  var dbo = db.db("sdsdata");
+  dbo.collection('settings').find({}).toArray(function(err,results){
     if (err) throw err;
-    console.log("Collection created!");
-    db.close();
-  });
+    if(results.length===0){
+      var settingsObj = {device_name:"Sonic Dip Stick",tank_cap:"275",tank_height:"44",unit_display:"0"};
+      dbo.createCollection("settings", function(err, res) {
+        if (err) throw err;
+        console.log("Settings Collection Created");
+         dbo.collection("settings").insertOne(settingsObj, function(err, res) {
+            if (err) throw err;
+            console.log("default settings established");
+            db.close();
+          });
+      });     
+    }else{
+      console.log('restoring previous settings');
+      db.close();
+    }
+  })
 });
 
 var routes = require('./routes/index');
