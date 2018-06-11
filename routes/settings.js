@@ -2,19 +2,19 @@ var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://192.168.0.151:27017/";
-var settings = {}
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("sdsdata");
-  dbo.collection("settings").findOne({}, function(err, result) {
-    if (err) throw err;
-    settings=result
-    db.close();
-  });
-});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  var settings = {}
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("sdsdata");
+    dbo.collection("settings").findOne({}, function(err, result) {
+      if (err) throw err;
+      settings=result
+      db.close();
+    });
+  });
   var obj = settings;
   res.render('pages/settings', {
     title:"Sonic Dip Stick - Settings",
