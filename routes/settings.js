@@ -31,7 +31,7 @@ router.post('/',function(req, res, next){
     var dbo = db.db("sdsdata");
     var myquery = { _id: settings._id };
     var newvalues = { $set: {device_name:req.body.device_name,tank_cap:req.body.tank_capcity,tank_height:req.body.tank_height,unit_display:req.body.DisplayUnit} };
-    dbo.collection("settings").updateOne(myquery, newvalues, function(err, res) {
+    dbo.collection("settings").updateOne(myquery, newvalues, function(err, result) {
       if (err) throw err;
       console.log("settings updated");
       db.close();
