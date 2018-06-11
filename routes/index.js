@@ -1,8 +1,20 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://192.168.0.151:27017/";
+var settings = {}
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("sdsdata");
+  dbo.collection("settings").findOne({}, function(err, result) {
+    if (err) throw err;
+    settings=result[0]
+    db.close();
+  });
+});
 
-var settingsPath = '/data/settings.json'
+//var settingsPath = '/data/settings.json'
 		
 		if(process.env.NODE_ENV != 'development'){
 		var oil = require('../model/oilLevel.js');
@@ -11,8 +23,8 @@ var settingsPath = '/data/settings.json'
 			var options = {
 					pin:11
 			}
-			fs.readFile(settingsPath, function(err,data){
-    		var settings=JSON.parse(data);
+			//fs.readFile(settingsPath, function(err,data){
+    		//var settings=JSON.parse(data);
 			oil.check(options, function(err,results){
 					if(!err){
 						console.log(results)
@@ -36,14 +48,14 @@ var settingsPath = '/data/settings.json'
 						});
 					}
 			})
-			})
+			//})
 		});
 
 	}else{
 // 		***************** Develompent Mode ********************
 		router.get('/', function(req, res, next) {
-			fs.readFile(settingsPath, function(err,data){
-    		var settings=JSON.parse(data);
+			//fs.readFile(settingsPath, function(err,data){
+    		//var settings=JSON.parse(data);
 				var results = {date:'11/29/2017',data:{'residual':'26', 'percentile':59,'gallons':162},time: '13:38:18' }
 				res.render('pages/index', {
 					title: settings.device_name,
@@ -53,7 +65,7 @@ var settingsPath = '/data/settings.json'
 					tank_height:settings.tank_height,
 					unit_display:settings.unit_display
 				});
-		});
+		//});
 	});
 }
 module.exports = router;
