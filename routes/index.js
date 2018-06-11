@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://192.168.0.151:27017/";
+var url = "mongodb://localhost:27017/";
 	if(process.env.NODE_ENV != 'development'){
 	var oil = require('../model/oilLevel.js');
 	/* GET home page. */
