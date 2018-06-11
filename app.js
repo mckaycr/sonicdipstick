@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+var url = "mongodb://192.168.0.151:27017/";
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
@@ -62,7 +62,7 @@ app.use('/settings', settings);
 var j = schedule.scheduleJob('0 */2 * * *', function(){
   		oil.check({pin:11}, function(err,res){
       var options = {
-        uri: 'https://dweet.io:443/dweet/for/sonicdipstick?date='+res.date+' '+res.data.time+'&gallons='+res.data.gallons,
+        uri: 'https://dweet.io:443/dweet/for/sonicdipstick?date='+res.date+' '+res.time+'&gallons='+res.data.gallons,
         method:'POST',
         json:true
       }
