@@ -9,7 +9,7 @@ MongoClient.connect(url, function(err, db) {
   var dbo = db.db("sdsdata");
   dbo.collection("settings").findOne({}, function(err, result) {
     if (err) throw err;
-    settings=result[0]
+    settings=result
     db.close();
   });
 });
