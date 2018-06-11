@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var fs = require('fs');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://192.168.0.151:27017/";
 
@@ -58,21 +57,6 @@ app.use('/', routes);
 app.use('/about', about);
 app.use('/api', api);
 app.use('/settings', settings);
-
-fs.open('/data/settings.json', 'r', (err, fd) => {
-  if (err) {
-    if (err.code === 'ENOENT') {
-			console.log("application settings not present, establishing default settings")
-      var fileContent = '{"device_name":"Sonic Dip Stick","tank_cap":"275","tank_height":"44","unit_display":"0"}';
-			var filePath = "/data/settings.json"
-			fs.writeFile(filePath, fileContent, (err) => {
-					if (err) throw err;
-					console.log("default settings established");
-			}); 
-    }
-    //throw err;
-  }
-});
 
 // dweets
 var j = schedule.scheduleJob('0 */2 * * *', function(){
