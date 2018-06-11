@@ -15,18 +15,19 @@ var settings = {}
 // });
 	if(process.env.NODE_ENV != 'development'){
 	var oil = require('../model/oilLevel.js');
-	MongoClient.connect(url, function(err, db) {
-	  if (err) throw err;
-	  var dbo = db.db("sdsdata");
-	  dbo.collection("settings").findOne({}, function(err, result) {
-	    if (err) throw err;
-	    settings=result
-	    console.log(settings)
-	    db.close();
-	  });
-	});
 	/* GET home page. */
 	router.get('/', function(req, res, next) {
+		var settings = {}
+		MongoClient.connect(url, function(err, db) {
+		  if (err) throw err;
+		  var dbo = db.db("sdsdata");
+		  dbo.collection("settings").findOne({}, function(err, result) {
+		    if (err) throw err;
+		    settings=result
+		    console.log(settings)
+		    db.close();
+		  });
+		});
 		var options = {
 				pin:11
 		}
