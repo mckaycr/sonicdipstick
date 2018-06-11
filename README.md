@@ -22,19 +22,7 @@ cd sonicdipstick
 git remote add resin <USERNAME>@git.resin.io:<USERNAME>/<APPNAME>.git
 ```
 From there just continue following the [Deploy Code](https://docs.resin.io/raspberrypi3/nodejs/getting-started/#deploy-code) guide again, and your oil sensor should be deployed
-### Option 2:Install yourself on a raspberry pi
-#### Prerequisites
-```
-sudo apt install -y python-dev python-rpi.gpio
-```
-#### Setup
-```
-git clone git@github.com:mckaycr/sonicdipstick.git
-cd sonicdipstick
-npm install
-sudo npm start
-```
-Remember that in order to use the GPIO pins you must run your app as sudo.
+
 ## Usage
 In your browser go to:
 ```
