@@ -35,6 +35,7 @@ router.post('/',function(req, res, next){
       if (err) throw err;
       console.log("settings updated");
       db.close();
+      res.redirect('/');
     });
   });
 })
