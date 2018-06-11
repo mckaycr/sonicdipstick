@@ -3,7 +3,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	var MongoClient = require('mongodb').MongoClient;
-	var url = "mongodb://localhost:27017/";
+	var url = "mongodb://192.168.0.151:27017/";
 	  MongoClient.connect(url, function(err, db) {
 	    if (err) throw err;
 	    var dbo = db.db("sdsdata");
